@@ -13,14 +13,19 @@ UINavigationControllerDelegate,
 UITextFieldDelegate {
     
  
+    @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     @IBOutlet weak var imageView: UIImageView!
     
-  
+    @IBOutlet weak var topToolbar: UIToolbar!
+    
     @IBOutlet weak var bottomToolbar: UIToolbar!
     
- 
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
     
+    
+    @IBOutlet weak var albumButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
