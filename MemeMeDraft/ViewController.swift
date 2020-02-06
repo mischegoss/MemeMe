@@ -12,10 +12,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate,
 UITextFieldDelegate {
     
+ 
+    
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var bottomToolBar: UIToolbar!
-
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    
+  
+    @IBOutlet weak var bottomToolbar: UIToolbar!
+    
+ 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
