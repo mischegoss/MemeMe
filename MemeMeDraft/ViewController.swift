@@ -13,7 +13,9 @@ UINavigationControllerDelegate,
 UITextFieldDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var bottomToolBar: UIToolbar!
 
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
