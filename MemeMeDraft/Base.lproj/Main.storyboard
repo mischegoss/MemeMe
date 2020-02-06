@@ -1,46 +1,40 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemeMeDraft" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="0ze-GG-3mQ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="spatial" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="0ze-GG-3mQ">
+                                <rect key="frame" x="0.0" y="40" width="375" height="627"/>
                             </imageView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tUD-mE-0M8">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <navigationBar contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="tUD-mE-0M8">
+                                <rect key="frame" x="0.0" y="40" width="375" height="44"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem id="BKj-QF-Yms">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="AkL-JB-zPr">
-                                            
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="iE6-0B-scx">
-                                            
-                                        </barButtonItem>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="AkL-JB-zPr"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="iE6-0B-scx"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s63-2Z-FoN">
                                 <rect key="frame" x="16" y="581" width="343" height="17"/>
-                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
@@ -49,19 +43,14 @@
                                 <items>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="NRs-ZZ-CP6"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="bF5-qs-mTV"/>
-                                    <barButtonItem systemItem="camera" id="3IJ-Mf-8bw">
-                                        
-                                    </barButtonItem>
+                                    <barButtonItem systemItem="camera" id="3IJ-Mf-8bw"/>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="409-uq-l1G"/>
-                                    <barButtonItem title="Album" id="dAQ-GA-puB">
-                                        
-                                    </barButtonItem>
+                                    <barButtonItem title="Album" id="dAQ-GA-puB"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="2hF-jh-1bU"/>
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vvt-8r-MR6">
-                                <rect key="frame" x="16" y="72" width="343" height="17"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="16" y="112" width="343" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
@@ -71,7 +60,7 @@
                             <constraint firstItem="tUD-mE-0M8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7YL-EW-1JQ"/>
                             <constraint firstAttribute="trailing" secondItem="tUD-mE-0M8" secondAttribute="trailing" id="7hH-h9-22O"/>
                             <constraint firstItem="s63-2Z-FoN" firstAttribute="centerX" secondItem="RXm-Bp-gn8" secondAttribute="centerX" id="Ccu-00-cW9"/>
-                            <constraint firstItem="0ze-GG-3mQ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="H1c-5K-A6x"/>
+                            <constraint firstItem="0ze-GG-3mQ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="40" id="H1c-5K-A6x"/>
                             <constraint firstItem="0ze-GG-3mQ" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="K4v-zT-dT5"/>
                             <constraint firstItem="vvt-8r-MR6" firstAttribute="leading" secondItem="s63-2Z-FoN" secondAttribute="leading" id="SnU-Ug-SGF"/>
                             <constraint firstItem="RXm-Bp-gn8" firstAttribute="top" secondItem="s63-2Z-FoN" secondAttribute="bottom" constant="25" id="YGB-8B-a6w"/>
@@ -86,7 +75,6 @@
                             <constraint firstItem="vvt-8r-MR6" firstAttribute="top" secondItem="tUD-mE-0M8" secondAttribute="bottom" constant="28" id="pv0-Ho-nu5"/>
                         </constraints>
                     </view>
-                
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -94,4 +82,3 @@
         </scene>
     </scenes>
 </document>
-
