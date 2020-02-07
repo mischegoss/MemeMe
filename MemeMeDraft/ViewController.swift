@@ -24,7 +24,7 @@ UITextFieldDelegate {
     @IBOutlet weak var bottomToolbar: UIToolbar!
     
     
-    //Struct for meme
+    //Meme modal
     struct Meme {
            var topText: String
            var bottomText: String
@@ -33,33 +33,47 @@ UITextFieldDelegate {
        }
  
  
-    
+ //Styles for text bold, white with a black outline
 
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
-        .font:  UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        .font:  UIFont(name: "Thonburi-Bold", size: 40)!,
         .foregroundColor: UIColor.white,
         .strokeWidth: -4.0,
         .strokeColor: UIColor.black
     ]
-    
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+           cameraButtonBottom.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+           self.bottomTextField.becomeFirstResponder()
+           self.topTextField.becomeFirstResponder()
+       }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
        startPageReady()
+        NotificationCenter.default.addObserver(self, selector: Selector(("keyboardWillShow:")), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: Selector(("keyboardWillHide:")), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    //Helper function to set up code and styles
     func startPageReady() {
-        self.bottomTextField.text = "BOTTOM"
-        self.topTextField.text = "TOP"
-        self.topTextField.defaultTextAttributes = memeTextAttributes
-        self.bottomTextField.defaultTextAttributes = memeTextAttributes
+        func styleText(textField: UITextField) {
+            textField.defaultTextAttributes = memeTextAttributes
+            
+            topTextField.text = "TOP"
+            bottomTextField.text = "BOTTOM"
+            textField.textAlignment = .center
+            textField.delegate = self
+        }
+        styleText(textField: topTextField)
+        styleText(textField: bottomTextField)
         self.shareButtonTop.isEnabled = false
-        self.cameraButtonBottom.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        self.imageView.image = nil
     }
-  //Helper function
+    
+  
     func hideToolBar(showOption: Bool) {
         self.bottomToolbar.isHidden = showOption
         self.navBar.isHidden = showOption
@@ -95,21 +109,7 @@ UITextFieldDelegate {
           dismiss(animated: true, completion: nil)
       }
     
-     // func textFieldResignFirstResponder(_ textField: UITextField) -> Bool {
-      //      textField.resignFirstResponder()
-       //     return true
-       // }
-
-        @objc func keyboardWillShow(_ notification:Notification) {
-            if bottomTextField.isEditing{
-            view.frame.origin.y = -getKeyboardHeight(notification)
-            }
-        }
-        
-        @objc func keyboardWillHide(_ notification:Notification) {
-            view.frame.origin.y = 0.0
-        }
-        
+   //Keyboard functions including moving view if use bottom text field
         override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
             self.topTextField.resignFirstResponder()
             self.bottomTextField.resignFirstResponder()
@@ -121,6 +121,17 @@ UITextFieldDelegate {
             return keyboardSize.cgRectValue.height
         }
     
+   @objc func keyboardWillShow(_ notification:Notification) {
+         if bottomTextField.isFirstResponder {
+            self.view.frame.origin.y = getKeyboardHeight(notification) * -1
+         }
+     }
+     
+     @objc func keyboardWillHide(_ notification:Notification) {
+        self.view.frame.origin.y = 0.0
+     }
+      
+ //displays the image picker
     func pickImageFromSource(sourceType: UIImagePickerController.SourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -134,21 +145,15 @@ UITextFieldDelegate {
         pickImageFromSource(sourceType: .camera)
     }
     
-  func shareMeme( _ memeImageToShare: UIImage) {
+  //Share button launches the Activity View
+    func shareMeme( _ memeImageToShare: UIImage) {
     _ = Meme(topText: self.topTextField.text!,
              bottomText: self.bottomTextField.text!,
              firstImage: self.imageView.image!,
              memedImage: memeImageToShare)
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
+    //meme is saved in the activity view controller’s completionWithItemsHandler
     
     @IBAction func pressShare(_ sender: Any) {
         let memeImageToSave = generateImage()
