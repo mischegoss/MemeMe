@@ -26,7 +26,7 @@
                                     <navigationItem title="MemeMe 1.0" id="BKj-QF-Yms">
                                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="AkL-JB-zPr" userLabel="Share">
                                             <connections>
-                                                <action selector="shareButtonActor:" destination="BYZ-38-t0r" id="e5w-A5-2xA"/>
+                                                <action selector="pressShare:" destination="BYZ-38-t0r" id="icd-IA-ZSm"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="iE6-0B-scx">

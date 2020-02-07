@@ -54,20 +54,12 @@ UITextFieldDelegate {
     func startPageReady() {
         self.bottomTextField.text = "BOTTOM"
         self.topTextField.text = "TOP"
-       
         self.topTextField.defaultTextAttributes = memeTextAttributes
         self.bottomTextField.defaultTextAttributes = memeTextAttributes
-        
-       
-            
-       
-        // Disable share button
         self.shareButtonTop.isEnabled = false
-        
-        //Camera Button is enabled if camera available
         self.cameraButtonBottom.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
-    
+  //Helper function
     func hideToolBar(showOption: Bool) {
         self.bottomToolbar.isHidden = showOption
         self.navBar.isHidden = showOption
@@ -90,21 +82,23 @@ UITextFieldDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
           
           if let image = info[.editedImage] as? UIImage {
+              self.shareButtonTop.isEnabled = true
               imageView.image = image
               imageView.contentMode = .scaleAspectFill
-              //self.saveMemeButton.isEnabled = true
+              
           } else if let image = info[.originalImage] as? UIImage {
-              imageView.image = image
+              self.shareButtonTop.isEnabled = true
+            imageView.image = image
               imageView.contentMode = .scaleAspectFit
-              //self.saveMemeButton.isEnabled = true
+              
           }
           dismiss(animated: true, completion: nil)
       }
     
-      func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            textField.resignFirstResponder()
-            return true
-        }
+     // func textFieldResignFirstResponder(_ textField: UITextField) -> Bool {
+      //      textField.resignFirstResponder()
+       //     return true
+       // }
 
         @objc func keyboardWillShow(_ notification:Notification) {
             if bottomTextField.isEditing{
@@ -123,7 +117,7 @@ UITextFieldDelegate {
         
         func getKeyboardHeight(_ notification:Notification) -> CGFloat {
             let userInfo = notification.userInfo
-            let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+            let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
             return keyboardSize.cgRectValue.height
         }
     
@@ -140,6 +134,34 @@ UITextFieldDelegate {
         pickImageFromSource(sourceType: .camera)
     }
     
+  func shareMeme( _ memeImageToShare: UIImage) {
+    _ = Meme(topText: self.topTextField.text!,
+             bottomText: self.bottomTextField.text!,
+             firstImage: self.imageView.image!,
+             memedImage: memeImageToShare)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    @IBAction func pressShare(_ sender: Any) {
+        let memeImageToSave = generateImage()
+        let activityController = UIActivityViewController(activityItems: [memeImageToSave], applicationActivities: nil)
+            activityController.completionWithItemsHandler = {
+                activity, completed, item, error in
+                if completed {
+                    self .shareMeme(memeImageToSave)
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+            present(activityController, animated: true, completion: nil)
+        }
     
     @IBAction func pressCancel(_ sender: Any) {
         self.startPageReady()
@@ -147,4 +169,5 @@ UITextFieldDelegate {
     @IBAction func pressAction(_ sender: Any) {
         pickImageFromSource(sourceType: .photoLibrary)
     }
+
 }
