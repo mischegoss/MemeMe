@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate,
@@ -109,7 +110,7 @@ UITextFieldDelegate {
           dismiss(animated: true, completion: nil)
       }
     
-   //Keyboard functions including moving view if use bottom text field
+
         override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
             self.topTextField.resignFirstResponder()
             self.bottomTextField.resignFirstResponder()

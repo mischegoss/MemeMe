@@ -62,5 +62,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>This is to select a photo for your meme</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This is to select a photo for your meme</string>
 </dict>
 </plist>
