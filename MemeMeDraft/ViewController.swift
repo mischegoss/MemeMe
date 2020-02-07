@@ -15,6 +15,8 @@ UITextFieldDelegate {
     @IBOutlet weak var albumButtonBottom: UIBarButtonItem!
     @IBOutlet weak var cameraButtonBottom: UIBarButtonItem!
     @IBOutlet weak var topTextField: UITextField!
+
+    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var cancelButtonTop: UIBarButtonItem!
     @IBOutlet weak var shareButtonTop: UIBarButtonItem!
@@ -30,6 +32,18 @@ UITextFieldDelegate {
            var memedImage: UIImage
        }
  
+ 
+    
+
+    let memeTextAttributes: [NSAttributedString.Key: Any] = [
+        .font:  UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        .foregroundColor: UIColor.white,
+        .strokeWidth: -4.0,
+        .strokeColor: UIColor.black
+    ]
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,19 +52,80 @@ UITextFieldDelegate {
     }
     
     func startPageReady() {
-        
-        // Add top and bottom text
-        
-        self.topTextField.text = "TOP"
         self.bottomTextField.text = "BOTTOM"
-        self.imageView.image = nil
+        self.topTextField.text = "TOP"
+       
+        self.topTextField.defaultTextAttributes = memeTextAttributes
+        self.bottomTextField.defaultTextAttributes = memeTextAttributes
         
+       
+            
+       
         // Disable share button
         self.shareButtonTop.isEnabled = false
         
-        //Camera Button
+        //Camera Button is enabled if camera available
         self.cameraButtonBottom.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
+    
+    func hideToolBar(showOption: Bool) {
+        self.bottomToolbar.isHidden = showOption
+        self.navBar.isHidden = showOption
+    }
+    
+    func generateImage() -> UIImage {
+           
+           hideToolBar(showOption: true)
+           
+           UIGraphicsBeginImageContext(self.view.frame.size)
+           view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+           let generatedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+           UIGraphicsEndImageContext()
+
+           hideToolBar(showOption: false)
+           
+           return generatedImage
+       }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+          
+          if let image = info[.editedImage] as? UIImage {
+              imageView.image = image
+              imageView.contentMode = .scaleAspectFill
+              //self.saveMemeButton.isEnabled = true
+          } else if let image = info[.originalImage] as? UIImage {
+              imageView.image = image
+              imageView.contentMode = .scaleAspectFit
+              //self.saveMemeButton.isEnabled = true
+          }
+          dismiss(animated: true, completion: nil)
+      }
+    
+      func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+            return true
+        }
+
+        @objc func keyboardWillShow(_ notification:Notification) {
+            if bottomTextField.isEditing{
+            view.frame.origin.y = -getKeyboardHeight(notification)
+            }
+        }
+        
+        @objc func keyboardWillHide(_ notification:Notification) {
+            view.frame.origin.y = 0.0
+        }
+        
+        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            self.topTextField.resignFirstResponder()
+            self.bottomTextField.resignFirstResponder()
+        }
+        
+        func getKeyboardHeight(_ notification:Notification) -> CGFloat {
+            let userInfo = notification.userInfo
+            let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+            return keyboardSize.cgRectValue.height
+        }
     
     func pickImageFromSource(sourceType: UIImagePickerController.SourceType) {
         let imagePicker = UIImagePickerController()
@@ -66,6 +141,9 @@ UITextFieldDelegate {
     }
     
     
+    @IBAction func pressCancel(_ sender: Any) {
+        self.startPageReady()
+    }
     @IBAction func pressAction(_ sender: Any) {
         pickImageFromSource(sourceType: .photoLibrary)
     }
