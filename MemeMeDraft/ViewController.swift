@@ -11,27 +11,62 @@ import UIKit
 class ViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate,
 UITextFieldDelegate {
-    
- 
-    @IBOutlet weak var shareButton: UIBarButtonItem!
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
-    
+    //Setting up outlets
+    @IBOutlet weak var albumButtonBottom: UIBarButtonItem!
+    @IBOutlet weak var cameraButtonBottom: UIBarButtonItem!
+    @IBOutlet weak var topTextField: UITextField!
+    @IBOutlet weak var bottomTextField: UITextField!
+    @IBOutlet weak var cancelButtonTop: UIBarButtonItem!
+    @IBOutlet weak var shareButtonTop: UIBarButtonItem!
     @IBOutlet weak var imageView: UIImageView!
-    
-    @IBOutlet weak var topToolbar: UIToolbar!
-    
     @IBOutlet weak var bottomToolbar: UIToolbar!
     
-    @IBOutlet weak var cameraButton: UIBarButtonItem!
     
-    
-    @IBOutlet weak var albumButton: UIBarButtonItem!
-    
+    //Struct for meme
+    struct Meme {
+           var topText: String
+           var bottomText: String
+           var firstImage: UIImage
+           var memedImage: UIImage
+       }
+ 
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+       startPageReady()
     }
-
-
+    
+    func startPageReady() {
+        
+        // Add top and bottom text
+        
+        self.topTextField.text = "TOP"
+        self.bottomTextField.text = "BOTTOM"
+        self.imageView.image = nil
+        
+        // Disable share button
+        self.shareButtonTop.isEnabled = false
+        
+        //Camera Button
+        self.cameraButtonBottom.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+    }
+    
+    func pickImageFromSource(sourceType: UIImagePickerController.SourceType) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        imagePicker.sourceType = sourceType
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+   
+    @IBAction func pressCamera(_ sender: Any) {
+        pickImageFromSource(sourceType: .camera)
+    }
+    
+    
+    @IBAction func pressAction(_ sender: Any) {
+        pickImageFromSource(sourceType: .photoLibrary)
+    }
 }
-

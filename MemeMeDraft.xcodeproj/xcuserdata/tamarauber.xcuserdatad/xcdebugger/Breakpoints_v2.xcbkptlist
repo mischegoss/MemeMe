@@ -7,49 +7,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "88BD1067-05DC-4B25-BBD4-5342CD1A8951"
+            uuid = "BCFD42FB-3969-4DFB-A810-CCA9B406654D"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MemeMeDraft/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "ViewController"
             landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "88BD1067-05DC-4B25-BBD4-5342CD1A8951 - c99df739ddc707"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MemeMeDraft.ViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; MemeMeDraft.ViewController"
-                  moduleName = "MemeMeDraft"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tamarauber/Desktop/MemeMeDraft/MemeMeDraft/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "579">
-               </Location>
-               <Location
-                  uuid = "88BD1067-05DC-4B25-BBD4-5342CD1A8951 - bbdebf1d80032b72"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MemeMeDraft.ViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;MemeMeDraft.ViewController&gt;"
-                  moduleName = "MemeMeDraft"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tamarauber/Desktop/MemeMeDraft/MemeMeDraft/ViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "511">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A090BB5D-E6CE-40B2-9686-5A84F1B71BAC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MemeMeDraft/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "ViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
