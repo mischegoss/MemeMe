@@ -109,18 +109,18 @@ UITextFieldDelegate {
           dismiss(animated: true, completion: nil)
       }
     
-
+//This sets the text fields to first responders when they are touched
         override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
             self.topTextField.resignFirstResponder()
             self.bottomTextField.resignFirstResponder()
         }
-        
+  //This gets the keyboard height which we are then going to use to pull up.
         func getKeyboardHeight(_ notification:Notification) -> CGFloat {
             let userInfo = notification.userInfo
             let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
             return keyboardSize.cgRectValue.height
         }
-    
+   //If the bottom text is first responder, then move frame up
    @objc func keyboardWillShow(_ notification:Notification) {
          if bottomTextField.isFirstResponder {
             self.view.frame.origin.y = getKeyboardHeight(notification) * -1
